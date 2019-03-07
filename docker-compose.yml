@@ -1,0 +1,12 @@
+version: '3'
+services:
+  bdweb-app:
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    volumes:
+      - './src:/app/src'
+      - './tests:/app/tests'
+    ports:
+      - "5201:8080"
+
