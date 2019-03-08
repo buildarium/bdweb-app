@@ -1,6 +1,7 @@
 FROM node:lts-alpine
 
 # Vue CLI
+RUN npm install -g typescript
 RUN npm install -g @vue/cli
 
 # make the 'app' folder the current working directory
