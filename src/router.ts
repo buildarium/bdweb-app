@@ -13,11 +13,11 @@ const router = new Router({
   routes: [
     {
       path: '*',
-      redirect: '/signin'
+      redirect: '/signup'
     },
     {
       path: '/',
-      redirect: '/signin'
+      redirect: '/signup'
     },
     {
       path: '/dashboard',
@@ -45,7 +45,7 @@ router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
   if (requiresAuth && !currUser) {
-    next('login');
+    next('signup');
   } else if (!requiresAuth && currUser) {
     next('dashboard');
   } else {
