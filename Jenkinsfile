@@ -4,6 +4,10 @@ pipeline {
     registryCredential = 'dockerhub'
     dockerImage = ''
     HOME="."
+    "$HOME=."
+    "HOME=."
+    'npm_config_cache=npm-cache'
+    npm_config_cache='npm-cache'
   }
 
   agent any
