@@ -3,11 +3,6 @@ pipeline {
     registry = "buildarium/bdweb-app"
     registryCredential = 'dockerhub'
     dockerImage = ''
-    HOME="."
-    "$HOME=."
-    "HOME=."
-    'npm_config_cache=npm-cache'
-    npm_config_cache='npm-cache'
   }
 
   agent any
@@ -21,7 +16,7 @@ pipeline {
     stage('Build') {
       steps {
         script {
-          dockerImage = docker.build registry
+          dockerImage = docker.build(registry, '--no-cache --rm .')
         }
       }
     }
