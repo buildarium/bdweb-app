@@ -3,6 +3,7 @@ pipeline {
     registry = "buildarium/bdweb-app"
     registryCredential = 'dockerhub'
     dockerImage = ''
+    HOME="."
   }
 
   agent any
