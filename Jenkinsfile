@@ -16,7 +16,7 @@ pipeline {
     stage('Build') {
       steps {
         script {
-          dockerImage = docker.build(registry, '--no-cache --rm .')
+          dockerImage = docker.build registry
         }
       }
     }
