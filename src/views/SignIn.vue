@@ -1,7 +1,7 @@
 <template>
   <div class="signin">
     <h3>Thank God you're back</h3>
-    <p>Aliens...</p>
+    <p>The universe needs your help...</p>
     <br />
     <input type="text" v-model="email" placeholder="Email"><br>
     <input type="password" v-model="password" placeholder="Password"><br>
