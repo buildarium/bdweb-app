@@ -2,14 +2,12 @@
 
 > Buildarium Vue Frontend
 
-![Version](https://img.shields.io/badge/version-1.0.2-black.svg?longCache=true&style=flat-square)
-[![Docker Cloud](https://img.shields.io/docker/cloud/build/buildarium/bdweb-app.svg)](https://cloud.docker.com/u/buildarium/repository/docker/buildarium/bdweb-app)
-<!-- [![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m781258374-4099c727e3e333d16b40f870.svg?style=flat-square)](https://status.indie.casa) -->
-<!-- [![Deployment](https://img.shields.io/badge/deployment-gcloud-1B9CE2.svg?longCache=true&style=flat-square)](http://cloud.google.com/) -->
+![Version](https://img.shields.io/github/tag/buildarium/bdweb-app.svg)
+[![Build Status](http://build.bucktower.net:8080/buildStatus/icon?job=buildarium%2Fbdweb-app%2Fdevelop)](http://build.bucktower.net:8080/job/buildarium/job/bdweb-app/job/develop/)
+[![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m782541056-144fcfb21ea3e2c608a95806.svg)](https://status.buildarium.com)
 
-[![Slack Channel](https://img.shields.io/badge/chat-on%20slack-%233D133D.svg?longCache=true&style=flat-square)](https://buildarium.slack.com/app_redirect?channel=bdweb)
-[![Email](https://img.shields.io/badge/email-buck-blue.svg?longCache=true&style=flat-square)](mailto:buck@buildarium.com)
-![Maintenance](https://img.shields.io/maintenance/yes/2019.svg?style=flat-square)
+[![Slack Channel](https://img.shields.io/badge/chat-on%20slack-%233D133D.svg?longCache=true)](https://buildarium.slack.com/app_redirect?channel=bdweb)
+![Maintenance](https://img.shields.io/maintenance/yes/2019.svg)
 
 ![Screenshot](https://i.imgur.com/QixTAZW.png)
 
@@ -35,7 +33,6 @@
   - [Deployment](#deployment)
     - [Development Ecosystem](#development-ecosystem)
     - [Testing Ecosystem](#testing-ecosystem)
-    - [Staging Ecosystem](#staging-ecosystem)
     - [Production Ecosystem](#production-ecosystem)
   - [Team](#team)
   - [FAQ](#faq)
@@ -211,7 +208,7 @@ To ensure successful deployment to the Testing Ecosystem:
 
 *You can view the running container at `http://test.buildarium.com:5201`.*
 
-### Staging Ecosystem
+<!-- ### Staging Ecosystem
 
 Deployment to Staging is triggered manually with containers built from the  `release-*` branch.
 
@@ -220,7 +217,7 @@ To prepare for the Staging Ecosystem, it is a good idea to:
 - All unit, integration, and e2e tests are passing
 - Ensure new features are properly covered by appropriate tests
 - Provide proper documentation for new features in the official docs
-- Ensure new code abides by the style guide
+- Ensure new code abides by the style guide -->
 
 ### Production Ecosystem
 
