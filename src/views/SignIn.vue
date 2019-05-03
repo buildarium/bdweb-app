@@ -28,15 +28,32 @@
     },
     methods: {
       signin: function() {
-        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
-          function(user) {
-            console.log(router);
-            router.replace('dashboard');
-          },
-          function(err) {
-            alert('Something went wrong: ' + err.message);
-          }
-        );
+        if(this.password.length > 0) {
+          this.$http.post('http://test.buildarium.com:5204/auth/signin', {
+            email: this.email,
+            password: this.password
+          })
+          .then(response => {
+            localStorage.setItem('user', JSON.stringify(response.data.user));
+            localStorage.setItem('jwt', reponse.data.token);
+
+            if (localStorage.getItem('jwt') != null) {
+              router.replace('dashboard');
+            }
+          })
+          .catch(function (error) {
+            console.error(error.response);
+          })
+        }
+        // firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
+        //   function(user) {
+        //     console.log(router);
+        //     router.replace('dashboard');
+        //   },
+        //   function(err) {
+        //     alert('Something went wrong: ' + err.message);
+        //   }
+        // );
       }
     }
   }
