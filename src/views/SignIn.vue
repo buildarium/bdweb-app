@@ -29,20 +29,20 @@
     methods: {
       signin: function() {
         if(this.password.length > 0) {
-          this.$http.post('http://test.buildarium.com:5204/auth/signin', {
+          this.$http.get('http://localhost:3000/signup', {
             email: this.email,
             password: this.password
           })
           .then(response => {
             localStorage.setItem('user', JSON.stringify(response.data.user));
-            localStorage.setItem('jwt', reponse.data.token);
+            localStorage.setItem('jwt', response.data.token);
 
             if (localStorage.getItem('jwt') != null) {
               router.replace('dashboard');
             }
           })
           .catch(function (error) {
-            console.error(error.response);
+            console.error(error);
           })
         }
         // firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
@@ -72,5 +72,9 @@
     margin-top: 40vh;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%)
+  }
+  a:hover {
+    color: black;
+    background-color: white;
   }
 </style>

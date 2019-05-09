@@ -18,11 +18,11 @@ let app: any = '';
 // This is so that proper redirection happens if user is logged in
 // https://link.medium.com/plde3hYnIT
 // firebase.auth().onAuthStateChanged(() => {
-  if(!app) {
-    app = new Vue({
-      router,
-      store,
-      render: (h) => h(App),
-    }).$mount('#app');
-  }
+if (!app) {
+  app = new Vue({
+    router,
+    store,
+    render: (h) => h(App),
+  }).$mount('#app');
+}
 // });

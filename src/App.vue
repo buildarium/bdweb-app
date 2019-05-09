@@ -28,10 +28,6 @@
   a {
     color: white;
   }
-  a:hover {
-    color: black;
-    background-color: white;
-  }
   input {
     font-family: 'Press Start 2P', cursive;
     border-radius: 0;

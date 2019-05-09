@@ -39,7 +39,7 @@
     methods: {
       signUp: function() {
         if (this.password === this.passwordCheck && this.password.length > 0) {
-          this.$http.post('http://test.buildarium.com/signup', {
+          this.$http.get('http://localhost:3000/signup', {
             email: this.email,
             password: this.password,
             firstName: this.firstName,
@@ -76,17 +76,21 @@
 </script>
 
 <style lang="scss"scoped>
-.signup {
-  position: relative;
-  border: 2px solid white;
-  background-color: black;
-  width: 50%;
-  border-radius: 10px;
-  margin: auto;
-  text-align: center;
-  padding: 10px;
-  margin-top: 40vh;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%)
-}
+  .signup {
+    position: relative;
+    border: 2px solid white;
+    background-color: black;
+    width: 50%;
+    border-radius: 10px;
+    margin: auto;
+    text-align: center;
+    padding: 10px;
+    margin-top: 40vh;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%)
+  }
+  a:hover {
+    color: black;
+    background-color: white;
+  }
 </style>
