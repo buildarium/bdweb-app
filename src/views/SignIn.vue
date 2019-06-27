@@ -3,7 +3,7 @@
     <h3>Thank God you're back</h3>
     <p>The universe needs your help...</p>
     <br />
-    <input type="text" v-model="email" placeholder="Email"><br>
+    <input type="text" v-model="username" placeholder="Username"><br>
     <input type="password" v-model="password" placeholder="Password"><br>
     <br />
     <br />
@@ -22,22 +22,23 @@
     name: 'signin',
     data() {
       return {
-        email: '',
+        username: '',
         password: ''
       };
     },
     methods: {
       signin: function() {
         if(this.password.length > 0) {
-          this.$http.get('http://localhost:3000/signup', {
-            email: this.email,
+          this.$http.post('http://test.buildarium.com:5205/auth/signin', {
+            username: this.username,
             password: this.password
           })
           .then(response => {
             localStorage.setItem('user', JSON.stringify(response.data.user));
-            localStorage.setItem('jwt', response.data.token);
-
-            if (localStorage.getItem('jwt') != null) {
+            localStorage.setItem('awt', response.data.token);
+            localStorage.setItem('awtexpiration', response.data.expiration);
+            
+            if (localStorage.getItem('awt') != null) {
               router.replace('dashboard');
             }
           })

@@ -39,7 +39,7 @@
     methods: {
       signUp: function() {
         if (this.password === this.passwordCheck && this.password.length > 0) {
-          this.$http.get('http://localhost:3000/signup', {
+          this.$http.post('http://test.buildarium.com:5205/auth/signup', {
             email: this.email,
             password: this.password,
             firstName: this.firstName,
@@ -48,9 +48,8 @@
           })
           .then(response => {
             localStorage.setItem('user', JSON.stringify(response.data.user));
-            localStorage.setItem('jwt', response.data.token);
 
-            if (localStorage.getItem('jwt') != null) {
+            if (localStorage.getItem('awt') != null) {
               router.replace('dashboard');
             }
           })

@@ -2,15 +2,24 @@
   <div class="dashboard">
     <img alt="Vue logo" src="../assets/logo.svg" id="logo">
     <h1>Buildarium</h1>
-    <div 
     <div class="panel-keeper">
       <div class="menu-bar">
         <a href='https://depot.buildarium.com/'><button>Depot</button></a>
         <a href='https://twitter.com/buildarium'><button>Mission Control</button></a>
         <button @click="signOut">Sign out</button>
       </div>
-      <p>User Info</p>
-      <KitList username="bucktower" />
+      <UserInfo
+        username="bucktower"
+        firstname="Buck"
+        lastname="Tower"
+        email="buck@bucktower.net"
+        />
+      <div class="kit-box">
+        <h3>Kits <font-awesome-icon icon="box-open" /></h3>
+        <KitCard
+          title="Homestead"
+          />
+      </div>
     </div>
   </div>
 </template>
@@ -19,22 +28,21 @@
   import firebase from 'firebase';
   import { Component, Vue } from 'vue-property-decorator';
   import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
-  import KitList from '@/components/KitList.vue';
+  import KitCard from '@/components/KitCard.vue';
+  import UserInfo from '@/components/UserInfo.vue';
 
   export default {
     name: 'dashboard',
     components: {
       HelloWorld,
-      KitList
+      KitCard,
+      UserInfo
     },
     methods: {
       signOut: function() {
         localStorage.removeItem('user');
-        localStorage.removeItem('jwt');
+        localStorage.removeItem('awt');
         this.$router.replace('signin');
-        // firebase.auth().signOut().then(() => {
-        //   this.$router.replace('signin');
-        // });
       }
     }
   }

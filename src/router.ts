@@ -40,7 +40,7 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  const currUser = localStorage.getItem('jwt'); //firebase.auth().currentUser;
+  const currUser = localStorage.getItem('awt'); //firebase.auth().currentUser;
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
   if (requiresAuth && !currUser) {
