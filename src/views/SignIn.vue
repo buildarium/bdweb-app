@@ -3,7 +3,7 @@
     <h3>Thank God you're back</h3>
     <p>The universe needs your help...</p>
     <br />
-    <input type="text" v-model="email" placeholder="Email"><br>
+    <input type="text" v-model="username" placeholder="Username"><br>
     <input type="password" v-model="password" placeholder="Password"><br>
     <br />
     <br />
@@ -22,21 +22,39 @@
     name: 'signin',
     data() {
       return {
-        email: '',
+        username: '',
         password: ''
       };
     },
     methods: {
       signin: function() {
-        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
-          function(user) {
-            console.log(router);
-            router.replace('dashboard');
-          },
-          function(err) {
-            alert('Something went wrong: ' + err.message);
-          }
-        );
+        if(this.password.length > 0) {
+          this.$http.post('http://test.buildarium.com:5205/auth/signin', {
+            username: this.username,
+            password: this.password
+          })
+          .then(response => {
+            localStorage.setItem('user', JSON.stringify(response.data.user));
+            localStorage.setItem('awt', response.data.token);
+            localStorage.setItem('awtexpiration', response.data.expiration);
+            
+            if (localStorage.getItem('awt') != null) {
+              router.replace('dashboard');
+            }
+          })
+          .catch(function (error) {
+            console.error(error);
+          })
+        }
+        // firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
+        //   function(user) {
+        //     console.log(router);
+        //     router.replace('dashboard');
+        //   },
+        //   function(err) {
+        //     alert('Something went wrong: ' + err.message);
+        //   }
+        // );
       }
     }
   }
@@ -55,5 +73,9 @@
     margin-top: 40vh;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%)
+  }
+  a:hover {
+    color: black;
+    background-color: white;
   }
 </style>

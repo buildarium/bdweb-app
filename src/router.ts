@@ -3,7 +3,6 @@ import Router from 'vue-router';
 import Dashboard from './views/Dashboard.vue';
 import SignIn from './views/SignIn.vue';
 import SignUp from './views/SignUp.vue';
-import firebase from 'firebase';
 
 Vue.use(Router);
 
@@ -41,7 +40,7 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  const currUser = firebase.auth().currentUser;
+  const currUser = localStorage.getItem('awt'); //firebase.auth().currentUser;
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
   if (requiresAuth && !currUser) {
