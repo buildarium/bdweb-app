@@ -9,5 +9,5 @@ services:
       - './tests:/app/tests'
       - './public:/app/public'
     ports:
-      - "5201:8080"
+      - "8080:8080"
 
