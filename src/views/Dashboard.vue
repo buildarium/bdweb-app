@@ -16,9 +16,23 @@
         />
       <div class="kit-box">
         <h3>Kits <font-awesome-icon icon="box-open" /></h3>
-        <KitCard
-          title="Homestead"
-          />
+        <div class="kit-cards">
+          <KitCard
+            type="homestead"
+            />
+          <KitCard
+            type="homestead"
+            />
+          <KitCard
+            type="homestead"
+            />
+          <KitCard
+            type="homestead"
+            />
+          <KitCard
+            type="homestead"
+            />
+        </div>
       </div>
     </div>
   </div>
@@ -98,6 +112,13 @@
       100% {
           transform: rotate(360deg);
       }
+    }
+    
+    .kit-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      align-content: space-between;
     }
   }
 </style>
