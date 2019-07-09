@@ -46,7 +46,7 @@
       justify-content: space-between;
     }
     .depot-preview {
-      /*width: 100%;*/
+      width: 100%;
       max-width: 280;
     }
     p, ul {

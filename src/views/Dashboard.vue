@@ -16,21 +16,10 @@
         />
       <div class="kit-box">
         <h3>Kits <font-awesome-icon icon="box-open" /></h3>
+        <button>Claim a kit</button>
         <div class="kit-cards">
-          <KitCard
-            type="homestead"
-            />
-          <KitCard
-            type="homestead"
-            />
-          <KitCard
-            type="homestead"
-            />
-          <KitCard
-            type="homestead"
-            />
-          <KitCard
-            type="homestead"
+          <KitCard v-for="kit in ownedKits"
+            :type=kit.type
             />
         </div>
       </div>
@@ -39,7 +28,7 @@
 </template>
 
 <script>
-  import firebase from 'firebase';
+  // import firebase from 'firebase';
   import { Component, Vue } from 'vue-property-decorator';
   import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
   import KitCard from '@/components/KitCard.vue';
@@ -52,27 +41,32 @@
       KitCard,
       UserInfo
     },
+    data() {
+      return {
+        ownedKits: JSON.parse(localStorage.ownedKits)
+      }
+    },
     methods: {
       signOut: function() {
         localStorage.removeItem('user');
         localStorage.removeItem('awt');
         this.$router.replace('signin');
+      },
+      loadOwnedKits: function() {
+        this.$http.get('http://test.buildarium.com:5202/kit/me', {
+          'headers': {
+            'Authorization': localStorage.awt
+          }
+        })
+        .then((response) => {
+          localStorage.setItem('ownedKits', JSON.stringify(response.data['kits']))
+        })
       }
+    },
+    beforeMount() {
+      this.loadOwnedKits()
     }
   }
-  // @Component({
-  //   name: 'dashboard',
-  //   components: {
-  //     HelloWorld,
-  //   },
-  //   methods: {
-  //     signOut: function() {
-  //       firebase.auth().signOut().then(() => {
-  //         this.$router.replace('signin');
-  //       });
-  //     }
-  //   }
-  // })
   // export default class Dashboard extends Vue {}
 </script>
 
