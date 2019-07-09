@@ -17,7 +17,7 @@
       <div class="kit-box">
         <h3>Kits <font-awesome-icon icon="box-open" /></h3>
         <button>Claim a kit</button>
-        <div class="kit-cards">
+        <div class="kit-cards" v-if="kitsLoaded">
           <KitCard v-for="kit in ownedKits"
             :type=kit.type
             />
@@ -43,7 +43,8 @@
     },
     data() {
       return {
-        ownedKits: JSON.parse(localStorage.ownedKits)
+        ownedKits: [],
+        kitsLoaded: false
       }
     },
     methods: {
@@ -53,17 +54,22 @@
         this.$router.replace('signin');
       },
       loadOwnedKits: function() {
+        console.log(this.kitsLoaded);
         this.$http.get('http://test.buildarium.com:5202/kit/me', {
           'headers': {
             'Authorization': localStorage.awt
           }
         })
         .then((response) => {
-          localStorage.setItem('ownedKits', JSON.stringify(response.data['kits']))
+          this.ownedKits = response.data['kits'];
+          localStorage.setItem('ownedKits', JSON.stringify(response.data['kits']));
+          this.kitsLoaded = true;
+          console.log(this.kitsLoaded);
         })
       }
     },
-    beforeMount() {
+    created() {
+      this.kitsLoaded = false;
       this.loadOwnedKits()
     }
   }
