@@ -16,16 +16,20 @@
         />
       <div class="kit-box">
         <h3>Kits <font-awesome-icon icon="box-open" /></h3>
-        <KitCard
-          title="Homestead"
-          />
+        <button>Claim a kit</button>
+        <!--Don't load kits until we have pulled from bdapi-kits -- kitsLoaded false until GET -->
+        <div class="kit-cards" v-if="kitsLoaded">
+          <KitCard v-for="kit in ownedKits"
+            :type=kit.type
+            />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import firebase from 'firebase';
+  // import firebase from 'firebase';
   import { Component, Vue } from 'vue-property-decorator';
   import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
   import KitCard from '@/components/KitCard.vue';
@@ -38,27 +42,37 @@
       KitCard,
       UserInfo
     },
+    data() {
+      return {
+        ownedKits: [],
+        kitsLoaded: false
+      }
+    },
     methods: {
       signOut: function() {
         localStorage.removeItem('user');
         localStorage.removeItem('awt');
         this.$router.replace('signin');
+      },
+      loadOwnedKits: function() {
+        console.log(this.kitsLoaded);
+        this.$http.get('http://test.buildarium.com:5202/kit/me', {
+          'headers': {
+            'Authorization': localStorage.awt
+          }
+        })
+        .then((response) => {
+          this.ownedKits = response.data['kits'];
+          localStorage.setItem('ownedKits', JSON.stringify(response.data['kits']));
+          this.kitsLoaded = true;
+        })
       }
+    },
+    created() {
+      this.kitsLoaded = false;
+      this.loadOwnedKits()
     }
   }
-  // @Component({
-  //   name: 'dashboard',
-  //   components: {
-  //     HelloWorld,
-  //   },
-  //   methods: {
-  //     signOut: function() {
-  //       firebase.auth().signOut().then(() => {
-  //         this.$router.replace('signin');
-  //       });
-  //     }
-  //   }
-  // })
   // export default class Dashboard extends Vue {}
 </script>
 
@@ -98,6 +112,13 @@
       100% {
           transform: rotate(360deg);
       }
+    }
+    
+    .kit-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      align-content: space-between;
     }
   }
 </style>
