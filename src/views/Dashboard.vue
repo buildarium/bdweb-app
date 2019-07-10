@@ -17,6 +17,7 @@
       <div class="kit-box">
         <h3>Kits <font-awesome-icon icon="box-open" /></h3>
         <button>Claim a kit</button>
+        <!--Don't load kits until we have pulled from bdapi-kits -- kitsLoaded false until GET -->
         <div class="kit-cards" v-if="kitsLoaded">
           <KitCard v-for="kit in ownedKits"
             :type=kit.type
@@ -64,7 +65,6 @@
           this.ownedKits = response.data['kits'];
           localStorage.setItem('ownedKits', JSON.stringify(response.data['kits']));
           this.kitsLoaded = true;
-          console.log(this.kitsLoaded);
         })
       }
     },
